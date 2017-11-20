@@ -2,7 +2,7 @@ var conexion = require('./connection');
 function MetodosBD() {
     this.seleccionar = function (respuesta) {
         conexion.obtener(function (er, cn) {
-            cn.query('select * from alumnos', function (error, resultado) {
+            cn.query('select * from colegio.alumnos', function (error, resultado) {
                 cn.release();
                 if (error) {
                     respuesta.send({ estado: 'Error' });
@@ -14,7 +14,7 @@ function MetodosBD() {
     }
     this.seleccionarId = function (id, respuesta) {
         conexion.obtener(function (er, cn) {
-            cn.query('select * from alumnos where id=?', function (error, resultado) {
+            cn.query('select * from colegio.alumnos where id=?', id, function (error, resultado) {
                 cn.release();
                 if (error) {
                     respuesta.send({ estado: 'Error' });
@@ -26,7 +26,7 @@ function MetodosBD() {
     }
     this.insertar = function (datos, respuesta) {
         conexion.obtener(function (er, cn) {
-            cn.query('insert into alumnos set ?', datos, function (error, resultado) {
+            cn.query('insert into colegio.alumnos set ?', datos, function (error, resultado) {
                 cn.release();
                 if (error) {
                     respuesta.send({ estado: 'Error' });
@@ -39,7 +39,7 @@ function MetodosBD() {
     }
     this.actualizar = function (datos, respuesta) {
         conexion.obtener(function (er, cn) {
-            cn.query('update alumnos set ? where id = ?', [datos, datos, id], function (error, resultado) {
+            cn.query('update colegio.alumnos set ? where id = ?', [datos, datos, id], function (error, resultado) {
                 cn.release();
                 if (error) {
                     respuesta.send({ estado: 'Error' });
@@ -51,7 +51,7 @@ function MetodosBD() {
     }
     this.borrar = function (id, respuesta) {
         conexion.obtener(function (er, cn) {
-            cn.query('delete from alumnos where id = ?', id, function (error, resultado) {
+            cn.query('delete from colegio.alumnos where id = ?', id, function (error, resultado) {
                 cn.release();
                 if (error) {
                     respuesta.send({ estado: 'Error' });
@@ -62,4 +62,4 @@ function MetodosBD() {
         })
     }
 }
-    module.exports = new MetodosBD();
+module.exports = new MetodosBD();
