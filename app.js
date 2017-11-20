@@ -7,6 +7,8 @@ app.use(bodyparser.json());
 
 var connection = require('./connection');
 var routes = require('./route')
+var cors = require('./cors');
+app.use(cors.permisos);
 
 connection.inicia();
 routes.configurar(app);
