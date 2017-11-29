@@ -12,6 +12,18 @@ function MetodosBD() {
             })
         })
     }
+    this.seleccionarCurso = function (respuesta) {
+        conexion.obtener(function (er, cn) {
+            cn.query('select * from colegio.curso', function (error, resultado) {
+                cn.release();
+                if (error) {
+                    respuesta.send({ estado: 'Error' });
+                } else {
+                    respuesta.send(resultado);
+                }
+            })
+        })
+    }
     this.seleccionarId = function (id, respuesta) {
         conexion.obtener(function (er, cn) {
             cn.query('select * from colegio.alumnos where id=?', id, function (error, resultado) {

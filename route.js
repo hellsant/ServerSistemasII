@@ -16,6 +16,9 @@ function http() {
         app.delete('/alumno/:id/', function (solicitud, respuesta) {
             bd.borrar(solicitud.params.id, respuesta);
         })
+        app.get('/curso/', function (solicitud, respuesta) {
+            bd.seleccionarCurso(respuesta);
+        })
     }
 }
 module.exports = new http();
