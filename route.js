@@ -19,6 +19,9 @@ function http() {
         app.get('/curso/', function (solicitud, respuesta) {
             bd.seleccionarCurso(respuesta);
         })
+        app.get('/profesor/', function (solicitud, respuesta) {
+            bd.seleccionarProfesor(respuesta);
+        })
     }
 }
 module.exports = new http();

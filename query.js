@@ -2,7 +2,7 @@ var conexion = require('./connection');
 function MetodosBD() {
     this.seleccionar = function (respuesta) {
         conexion.obtener(function (er, cn) {
-            cn.query('select * from colegio.alumnos', function (error, resultado) {
+            cn.query('select * from colegio.alumno', function (error, resultado) {
                 cn.release();
                 if (error) {
                     respuesta.send({ estado: 'Error' });
@@ -69,6 +69,18 @@ function MetodosBD() {
                     respuesta.send({ estado: 'Error' });
                 } else {
                     respuesta.send({ estado: 'ok' });
+                }
+            })
+        })
+    }
+    this.seleccionarProfesor = function (respuesta) {
+        conexion.obtener(function (er, cn) {
+            cn.query('select * from colegio.profesor', function (error, resultado) {
+                cn.release();
+                if (error) {
+                    respuesta.send({ estado: 'Error' });
+                } else {
+                    respuesta.send(resultado);
                 }
             })
         })
