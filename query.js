@@ -37,8 +37,8 @@ function MetodosBD() {
         })
     }
     this.insertar = function (datos, respuesta) {
-        conexion.obtener(function (er, cn) {
-            cn.query('insert into colegio.alumnos set ?', datos, function (error, resultado) {
+        conexion.obtener(function (er, cn) {    
+            cn.query('insert into colegio.alumno set ?', datos, function (error, resultado) {
                 cn.release();
                 if (error) {
                     respuesta.send({ estado: 'Error' });
@@ -84,6 +84,19 @@ function MetodosBD() {
                 }
             })
         })
+    }
+    this.insertarProfesor = function (datos, respuesta) {
+        conexion.obtener(function (er, cn) {    
+            cn.query('insert into colegio.profesor set ?', datos, function (error, resultado) {
+                cn.release();
+                if (error) {
+                    respuesta.send({ estado: 'Error' });
+                } else {
+                    respuesta.send({ estado: 'ok' });
+                }
+            })
+        })
+
     }
 }
 module.exports = new MetodosBD();

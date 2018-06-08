@@ -22,6 +22,9 @@ function http() {
         app.get('/profesor/', function (solicitud, respuesta) {
             bd.seleccionarProfesor(respuesta);
         })
+        app.post('/profesor/', function (solicitud, respuesta) {
+            bd.insertarProfesor(solicitud.body, respuesta);
+        })
     }
 }
 module.exports = new http();
